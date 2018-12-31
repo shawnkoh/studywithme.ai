@@ -17,6 +17,8 @@ Quizlet: Too focused on learning languages
 
 I had enough! This exercise in futility made me resort to using an Excel spreadsheet to study for the past semester.
 
+<img src="/mid-assignment%20submission/Images/Tedious%20Spreadsheet.png" alt="Tedious Spreadsheet" width="65%">
+
 This simple spreadsheet was a paradigm shift in how I studied. I stopped re-reading the lecture notes. Instead, I read it once, made a list of questions, and constantly quizzed myself, recording how I performed for each question. If I found it challenging, I would test myself again the next day. If it was easy, I would test myself again in a longer duration in order to combat the forgetting curve.
 
 But it was incredibly _tedious_. I had to manually calculate when was the next date to quiz myself, it was incredibly annoying to type my answer as I had to insert a new row and then delete it after. Inserting pictures ruined the spreadsheet&#39;s formatting, formatting code was unfeasible: I couldn&#39;t multi-color a single cell.
@@ -29,8 +31,14 @@ To make studywithme.ai simple to use on any screen size, I am adopting a minimal
 
 I based the design on Apple&#39;s Reminders and drew a sketch.
 
-
+<img src="/mid-assignment%20submission/Images/Sketch%20-%20Main%20%26%20Question.png" alt="Main & Question Sketch" width="65%">
+<img src="/mid-assignment%20submission/Images/Sketch%20-%20Study%20Now.png" alt="Study Now Sketch" width="50%">
+  
 Then, I mocked up a wireframe using Sketch App.
+
+<img src="/mid-assignment%20submission/Images/Mockup%20-%20Main%20%26%20Question.svg" alt="Main & Question Mockup" width="75%">
+<img src="/mid-assignment%20submission/Images/Mockup%20-%20Study%20Now.svg" alt="Study Now Mockup" width="50%">
+<img src="/mid-assignment%20submission/Images/Mockup%20-%20Right%20Click.svg" alt="Right Click Mockup" width="20%">
 
 To focus on what really matters, I adopted [Li Hongyi&#39;s methodology](https://youtu.be/PcmO-5VPaOE?t=724).
 > P1 – If not done we don&#39;t launch  

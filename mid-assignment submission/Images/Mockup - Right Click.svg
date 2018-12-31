@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="223px" height="245px" viewBox="0 0 223 245" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Right Click</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop" transform="translate(-703.000000, -315.000000)">
+            <g id="Right-Click" transform="translate(703.000000, 315.000000)">
+                <g id="Empty" transform="translate(0.000000, 173.000000)">
+                    <rect id="Container" stroke="#555657" fill="#2B2B2D" x="0.5" y="0.5" width="222" height="71" rx="8"></rect>
+                    <g id="New-Subject" transform="translate(0.000000, 43.000000)" fill="#FFFFFF" font-family="HelveticaNeue, Helvetica Neue" font-size="14" font-weight="normal">
+                        <text id="Text">
+                            <tspan x="22" y="14">New Subject</tspan>
+                        </text>
+                    </g>
+                    <g id="New-Topic" transform="translate(0.000000, 24.000000)" fill="#FFFFFF" font-family="HelveticaNeue, Helvetica Neue" font-size="14" font-weight="normal">
+                        <text id="Text">
+                            <tspan x="22" y="14">New Topic</tspan>
+                        </text>
+                    </g>
+                    <g id="New-Question" transform="translate(0.000000, 5.000000)">
+                        <path d="M222.418483,-1.87900806e-11 C222.793493,0.926431436 223,1.93909956 223,3 L223,19 L0,19 L0,3 C-1.29922833e-16,1.93909956 0.206507135,0.926431436 0.581517047,-4.4408921e-16 L222.418483,0 Z" id="Container" fill="#1075EE"></path>
+                        <text id="Text" font-family="HelveticaNeue, Helvetica Neue" font-size="14" font-weight="normal" fill="#FFFFFF">
+                            <tspan x="22" y="14">New Question</tspan>
+                        </text>
+                    </g>
+                </g>
+                <g id="Subject-/-Topic">
+                    <rect id="Container" stroke="#555657" fill="#2B2B2D" x="0.5" y="0.5" width="222" height="157" rx="8"></rect>
+                    <g id="Colors" transform="translate(23.000000, 127.000000)">
+                        <circle id="AB8E68" fill="#AB8E68" cx="163" cy="11" r="7"></circle>
+                        <circle id="CC73E1" fill="#CC73E1" cx="137" cy="11" r="7"></circle>
+                        <circle id="1BADF8" fill="#1BADF8" cx="111" cy="11" r="7"></circle>
+                        <circle id="31D74B" fill="#31D74B" cx="85" cy="11" r="7"></circle>
+                        <circle id="FFD60A" fill="#FFD60A" cx="59" cy="11" r="7"></circle>
+                        <circle id="FF9502" fill="#FF9502" cx="33" cy="11" r="7"></circle>
+                        <circle id="FF2A68" fill="#FF2A68" cx="7" cy="11" r="7"></circle>
+                        <circle id="Active-Color" stroke="#757577" cx="137" cy="11" r="11"></circle>
+                    </g>
+                    <rect id="Divider" fill="#4F4F51" x="0" y="117" width="223" height="2"></rect>
+                    <g id="Paste-in-&quot;Sequences&quot;" transform="translate(0.000000, 93.000000)" fill="#FFFFFF" font-family="HelveticaNeue, Helvetica Neue" font-size="14" font-weight="normal">
+                        <text id="Text">
+                            <tspan x="22" y="14">Paste in “Sequences”</tspan>
+                        </text>
+                    </g>
+                    <g id="Archive" transform="translate(0.000000, 74.000000)" fill="#FFFFFF" font-family="HelveticaNeue, Helvetica Neue" font-size="14" font-weight="normal">
+                        <text id="Text">
+                            <tspan x="22" y="14">Archive</tspan>
+                        </text>
+                    </g>
+                    <rect id="Divider" fill="#4F4F51" x="0" y="67" width="223" height="2"></rect>
+                    <g id="Delete" transform="translate(0.000000, 43.000000)" fill="#FFFFFF" font-family="HelveticaNeue, Helvetica Neue" font-size="14" font-weight="normal">
+                        <text id="Text">
+                            <tspan x="22" y="14">Delete</tspan>
+                        </text>
+                    </g>
+                    <g id="Rename" transform="translate(0.000000, 24.000000)" fill="#FFFFFF" font-family="HelveticaNeue, Helvetica Neue" font-size="14" font-weight="normal">
+                        <text id="Text">
+                            <tspan x="22" y="14">Rename</tspan>
+                        </text>
+                    </g>
+                    <g id="Study-Now" transform="translate(0.000000, 5.000000)">
+                        <path d="M222.418483,-1.87900806e-11 C222.793493,0.926431436 223,1.93909956 223,3 L223,19 L0,19 L0,3 C-1.29922833e-16,1.93909956 0.206507135,0.926431436 0.581517047,-4.4408921e-16 L222.418483,0 Z" id="Container" fill="#1075EE"></path>
+                        <text id="Text" font-family="HelveticaNeue, Helvetica Neue" font-size="14" font-weight="normal" fill="#FFFFFF">
+                            <tspan x="22" y="14">Study Now</tspan>
+                        </text>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

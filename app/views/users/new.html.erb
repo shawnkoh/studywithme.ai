@@ -1,3 +1,40 @@
 <% provide(:title, 'Signup') %>
 <h1>Sign up</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user, url:signup_path) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <div class="form-group">
+        <%= f.label :username %>
+        <%= f.text_field :username, class: 'form-control', placeholder: "Pick a username" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control', placeholder: "you@example.com" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control', placeholder: "Create a password" %>
+        <small class="form-text text-muted">Your password must be at least 8 characters long</small>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation, class: 'form-control', placeholder: "Enter the same password" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :name, "Full Name" %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+
+      <%= f.submit "Create an account", class: "btn btn-primary" %>
+      
+      <p>By clicking "Create an account", you agree to our <%= link_to("terms of service", "#") %> and <%= link_to("privacy statement", "#") %>. We'll occasionally send you account related emails.</p>
+      
+    <% end %>
+  </div>
+</div>

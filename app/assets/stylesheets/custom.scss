@@ -42,9 +42,11 @@ input {
 
 /* signin */
 /* adapted from https://getbootstrap.com/docs/4.2/examples/floating-labels/ */
+
 .body-signin {
   display: -ms-flexbox;
   display: flex;
+  flex-direction: column;
   -ms-flex-align: center;
   align-items: center;
   padding-top: 40px;
@@ -139,6 +141,7 @@ input {
     color: #777;
   }
 }
+
 /* end signin */
 
 /* misc */

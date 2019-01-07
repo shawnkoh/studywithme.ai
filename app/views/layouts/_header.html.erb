@@ -2,8 +2,22 @@
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <a href="/" class="navbar-brand">studywithme.ai</a>
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item"><a href="#" class="nav-link text-white">Sign In</a></li>
-      <li class="nav-item"><%= link_to "Sign Up", signup_path, class: "nav-link border border-whitie rounded text-white" %></li>
+      <% if logged_in? %>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle text-white" data-toggle="dropdown">
+            <%= current_user.name %>
+          </a>
+          <div class="dropdown-menu">
+            <%= link_to "Profile", current_user, class: "dropdown-item" %>
+            <%= link_to "Settings", '#', class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Log out", logout_path, class: "dropdown-item", method: :delete %>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item"><%= link_to "Sign In", login_path, class: "nav-link text-white" %></li>
+        <li class="nav-item"><%= link_to "Sign Up", signup_path, class: "nav-link border border-whitie rounded text-white" %></li>
+      <% end %>
     </ul>
   </nav>
 </header>

@@ -14,6 +14,12 @@
     <%= f.label :password %>
   </div>
 
+  <div class="checkbox mb-3">
+    <%= f.label :remember_me do %>
+      <%= f.check_box :remember_me, checked: true %> Remember me
+    <% end %>
+  </div>
+
   <%= f.submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
   <p> New here? <%= link_to "Create an account", signup_path %>.</p>
 

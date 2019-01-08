@@ -148,6 +148,19 @@ input {
 
 /* end signin */
 
+/* Users index */
+/* adapted from https://www.railstutorial.org/book/updating_and_deleting_users#code-user_index_view */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid gray;
+  }
+}
+
 /* misc */
 
 .debug_dump {

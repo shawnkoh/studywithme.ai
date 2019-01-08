@@ -9,7 +9,7 @@
           </a>
           <div class="dropdown-menu">
             <%= link_to "Profile", current_user, class: "dropdown-item" %>
-            <%= link_to "Settings", '#', class: "dropdown-item" %>
+            <%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
             <%= link_to "Log out", logout_path, class: "dropdown-item", method: :delete %>
           </div>

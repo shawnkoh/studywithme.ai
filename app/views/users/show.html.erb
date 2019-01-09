@@ -9,6 +9,7 @@
         <%= @user.name %>
         <%= @user.username %>
         <%= @user.email %>
+        <%= "Email is not verified" unless @user.activated? %>
       </h1>
     </section>
   </aside>

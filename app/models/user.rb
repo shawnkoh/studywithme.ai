@@ -63,6 +63,11 @@ class User < ApplicationRecord
     UserMailer.password_reset(self).deliver_now
   end
 
+  # Returns true if a password reset has expired
+  def password_reset_expired?
+    reset_sent_at < 3.hours.ago
+  end
+
   private
     def create_activation_digest
       self.activation_token = User.new_token

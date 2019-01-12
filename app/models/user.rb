@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :subjects, dependent: :destroy
   attr_accessor :activation_token, :remember_token, :reset_token
   before_save do
     email.downcase!

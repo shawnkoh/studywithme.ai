@@ -1,9 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyText
-  subject: one
-
-two:
-  name: MyText
-  subject: two
+OOP:
+  name: OOP
+  subject: CS1010J
+  archived: false

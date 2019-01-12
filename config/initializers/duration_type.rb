@@ -1,3 +1,5 @@
+# Adapted from https://stackoverflow.com/questions/1051465/using-a-duration-field-in-a-rails-model
+
 class DurationType < ActiveRecord::Type::String
   def cast(value)
     return value if value.blank? || value.is_a?(ActiveSupport::Duration)

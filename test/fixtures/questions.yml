@@ -1,11 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyText
-  topic: one
-  answer: MyText
-
-two:
-  name: MyText
-  topic: two
-  answer: MyText
+What is a class?:
+  name: What is a class?
+  topic: OOP
+  answer: A class is simply a representation of a type of object. It is the blueprint/ plan/ template that describes the details of an object.

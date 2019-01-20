@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  topic: LAA
+  name: La
+  answer: La
+  difficulty: Hard
+  next_revision: 2019-01-20 17:19:49
+
+two:
+  topic: La
+  name: La
+  answer: La
+  difficulty: Hard
+  next_revision: 2019-01-20 17:19:49

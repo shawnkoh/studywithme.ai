@@ -13,6 +13,7 @@ import axios from 'axios';
 import SimpleMenu from './SimpleMenu';
 import NewQuestion from './NewQuestion';
 import CustomInput from './CustomInput';
+import Questions from './Questions';
 
 const styles = theme => ({
   root: {
@@ -45,17 +46,17 @@ class Topic extends Component {
     this.setState(state => ({ expanded: !state.expanded }));
   }
 
-  handleTitleChange = (event) => {
+  handleChange = (event) => {
     const newTopic = Object.assign({}, this.state.topic);
-    newTopic.title = event.target.value;
+    newTopic[event.target.name] = event.target.value;
     this.setState({ topic: newTopic });
   }
 
-  handleTitleSubmit = (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
-    axios.patch(`/api/topics/${this.state.topic.id}`, {
-      title: this.state.topic.title,
-    });
+    // there is probably a much better way to do this using FormData; not sure how yet, TBC
+    let payload = {[event.target.name]: this.state.topic[event.target.name]};
+    axios.patch(`/api/topics/${this.state.topic.id}`, payload);
   }
 
   render() {
@@ -111,12 +112,23 @@ class Topic extends Component {
         <Card className={classes.card}>
           <CardHeader
             action={<SimpleMenu />}
-            title={<CustomInput
+            title={
+              <CustomInput
+              name='title'
               value={topic.title}
-              handleChange={this.handleTitleChange}
-              handleSubmit={this.handleTitleSubmit}
-              />}
-            subheader={topic.description}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              />
+            }
+            subheader={
+              <CustomInput
+                name='description'
+                multiline='true'
+                value={topic.description}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+              />
+            }
           />
           <CardActions>
             <LinearProgress
@@ -131,7 +143,7 @@ class Topic extends Component {
           </CardActions>
           <Collapse in={this.state.expanded} time="auto" unmountOnExit>
             <CardContent>
-              {table}
+              <Questions questions={topic.questions} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
             </CardContent>
           </Collapse>
         </Card>

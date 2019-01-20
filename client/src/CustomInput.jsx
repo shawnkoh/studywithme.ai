@@ -9,6 +9,7 @@ const styles = theme => ({
 class CustomInput extends Component {
   constructor(props) {
     super(props);
+    this.form = React.createRef();
     this.state = {
       initialValue: this.props.value,
       disableUnderline: true,
@@ -32,18 +33,24 @@ class CustomInput extends Component {
 
   handleBlur = () => {
     this.setState({ disableUnderline: true, focus: false });
-    // if (this.props.value === '' ) {
-
-    // }
+    if (this.props.value === '') {
+      // reload initial value
+    } else {
+      this.form.current.dispatchEvent(new Event('submit'));
+    }
   }
 
   render() {
     const { handleSubmit, value, handleChange } = this.props;
     const { disableUnderline} = this.state;
     return (
-      <form onSubmit={handleSubmit}>
+      <form ref={this.form} onSubmit={handleSubmit} name={this.props.name}>
         <Input
           required
+          fullWidth
+          multiline={this.props.multiline}
+          autoComplete='off'
+          name={this.props.name}
           disableUnderline={disableUnderline}
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}

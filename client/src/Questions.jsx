@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Table, TableHead, TableRow, TableCell, TableSortLabel, TableBody } from "@material-ui/core";
 import CustomInput from './CustomInput';
-
-// const Questions = (questions, handleChange, handleSubmit) => {
-// function Questions(props) {
 
 class Questions extends Component {
   handleChange = () => {
@@ -66,7 +62,10 @@ class Questions extends Component {
 
 
           <TableRow>
-            <TableCell></TableCell>
+            <TableCell colSpan={3}>
+              <CustomInput
+              />
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>

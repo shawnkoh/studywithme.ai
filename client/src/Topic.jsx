@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {
-  Table, TableHead, TableRow, TableCell, TableSortLabel, TableBody,
   Card, CardHeader, CardActions, CardContent,
   IconButton,
   Collapse,
@@ -11,7 +10,6 @@ import {
 import { ExpandMoreRounded } from '@material-ui/icons';
 import axios from 'axios';
 import SimpleMenu from './SimpleMenu';
-import NewQuestion from './NewQuestion';
 import CustomInput from './CustomInput';
 import Questions from './Questions';
 
@@ -63,51 +61,7 @@ class Topic extends Component {
     const { topic } = this.state;
     const { classes, theme } = this.props;
 
-    const shortDate = new Intl.DateTimeFormat('en-GB', {
-      day: 'numeric',
-      month: 'short',
-    });
-
     if (topic) {
-      const table = (
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell width="100%">
-                <TableSortLabel>Question</TableSortLabel>
-              </TableCell>
-              <TableCell>
-                <TableSortLabel>Difficulty</TableSortLabel>
-              </TableCell>
-              <TableCell>
-                <TableSortLabel>Next Revision</TableSortLabel>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-
-          <TableBody>
-            { topic.questions.map(qn => { return (
-              <TableRow hover>
-                <TableCell width="100%">
-                  {qn.name}
-                </TableCell>
-                <TableCell>
-                  {qn.difficulty}
-                </TableCell>
-                <TableCell>
-                  {shortDate.format(new Date(qn.next_revision))}
-                </TableCell>
-              </TableRow>
-            ); })}
-            <TableRow>
-              <TableCell colSpan={3}>
-                <NewQuestion />
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      );
-
       return (
         <Card className={classes.card}>
           <CardHeader

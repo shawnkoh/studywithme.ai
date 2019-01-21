@@ -31,15 +31,6 @@ class Topic extends Component {
     this.state = { expanded: false };
   }
 
-  componentDidMount() {
-    this.getTopic();
-  }
-
-  getTopic = () => {
-    axios.get(`/api/topics/${this.props.id}`)
-      .then(res => this.setState({ topic: res.data }));
-  }
-
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   }
@@ -58,7 +49,7 @@ class Topic extends Component {
   }
 
   render() {
-    const { topic } = this.state;
+    const { topic, questions } = this.props;
     const { classes, theme } = this.props;
 
     if (topic) {
@@ -68,10 +59,10 @@ class Topic extends Component {
             action={<SimpleMenu />}
             title={
               <CustomInput
-              name='title'
-              value={topic.title}
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
+                name='title'
+                value={topic.title}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
               />
             }
             subheader={
@@ -97,7 +88,7 @@ class Topic extends Component {
           </CardActions>
           <Collapse in={this.state.expanded} time="auto" unmountOnExit>
             <CardContent>
-              <Questions questions={topic.questions} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+              <Questions topic_id={topic.id} questions={questions} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
             </CardContent>
           </Collapse>
         </Card>

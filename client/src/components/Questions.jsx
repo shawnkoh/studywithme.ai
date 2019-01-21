@@ -1,25 +1,9 @@
 import React, { Component } from 'react';
 import { Table, TableHead, TableRow, TableCell, TableSortLabel, TableBody } from "@material-ui/core";
 import CustomInput from './CustomInput';
+import Question from './Question';
 
 class Questions extends Component {
-  handleChange = () => {
-
-  }
-
-  handleSubmit = () => {
-
-  }
-
-  shortenDate = (date) => {
-    let formatter = new Intl.DateTimeFormat('en-GB', {
-      day: 'numeric',
-      month: 'short',
-    });
-
-    return formatter.format(new Date(date));
-  }
-
   render() {
     return (
       <Table>
@@ -38,28 +22,14 @@ class Questions extends Component {
         </TableHead>
 
         <TableBody>
-          {this.props.questions.map(qn => {
-            return (
-              <TableRow hover>
-                <TableCell width='100%'>
-                  <CustomInput
-                    name={qn.name}
-                    value={qn.name}
-                    handleChange={this.handleChange}
-                    handleSubmit={this.handleSubmit}
-                  />
-                </TableCell>
-                <TableCell>
-                  {qn.difficulty}
-                </TableCell>
-                <TableCell>
-                  {this.shortenDate(qn.next_revision)}
-                </TableCell>
-              </TableRow>
-            )
+          {this.props.questions.map(question => {
+            if (this.props.topic_id === question.topic_id) {
+              return (
+                <Question question={question} />
+              )
+            };
+            return null;
           })}
-
-
 
           <TableRow>
             <TableCell colSpan={3}>

@@ -15,7 +15,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {
   ArrowBackRounded, TagFacesRounded, Settings, FaceRounded, ListRounded, StoreRounded,
 } from '@material-ui/icons';
-import { CssBaseline, TextField, Badge } from '@material-ui/core';
+import { CssBaseline, TextField, Badge, Typography } from '@material-ui/core';
 
 
 const drawerWidth = 240;
@@ -63,7 +63,9 @@ class ResponsiveDrawer extends React.Component {
     const drawer = (
       <div>
         <Toolbar>
-          studywithme.ai
+          <Typography>
+            studywithme.ai
+          </Typography>
         </Toolbar>
 
         <Divider />

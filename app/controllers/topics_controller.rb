@@ -4,14 +4,14 @@ class TopicsController < ApplicationController
 
   # GET /topics
   def index
-    @topics = Topic.select("id").all
+    @topics = Topic.select("id", "title", "description", "archived").all
 
     render json: @topics.to_json
   end
 
   # GET /topics/1
   def show
-    render json: @topic.to_json(include: :questions)
+    render json: @topic.to_json
   end
 
   # POST /topics

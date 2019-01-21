@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {
-  withStyles, CssBaseline, Fab, Grid,
+  withStyles, CssBaseline,
 } from '@material-ui/core';
-import { Add } from '@material-ui/icons';
-import ResponsiveDrawer from './ResponsiveDrawer';
-import Topic from './Topic';
+import ResponsiveDrawer from './components/ResponsiveDrawer';
+import Topics from './components/Topics';
+import AddTopic from './components/AddTopic';
+import NotificationsSwitch from './components/notifications-switch';
+import UserSettings from './components/user-settings';
+import FetchButton from './components/FetchButton';
+import { actions } from './store/actions';
 
 const styles = theme => ({
   root: {
@@ -20,11 +24,6 @@ const styles = theme => ({
   },
   gridItem: {
   },
-  fab: {
-    position: 'fixed',
-    bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 2,
-  },
 });
 
 class App extends Component {
@@ -35,6 +34,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getTopics();
+    this.getQuestions();
   }
 
   getTopics = () => {
@@ -42,17 +42,26 @@ class App extends Component {
       .then(res => this.setState({ topics: res.data }));
   }
 
-  handleSubmit = (event) => {
+  getQuestions = () => {
+    axios.get('/api/questions')
+      .then(res => this.setState({ questions: res.data }));
+  }
+  
+  handleAddTopicSubmit = (event) => {
     event.preventDefault();
     axios.post('/api/topics', {
-      title: 'Test',
-      description: 'Testing Axios',
+      title: 'New Topic',
+      description: 'New Topic Description',
     })
       .then(res => this.setState(prevState => ({ topics: prevState.topics.concat(res.data) })));
   }
 
+  handleEditTopicSubmit = (event) => {
+    event.preventDefault();
+  }
+
   render() {
-    const { topics } = this.state;
+    const { topics, questions } = this.state;
     const { classes } = this.props;
     if (topics) {
       return (
@@ -61,22 +70,12 @@ class App extends Component {
           <ResponsiveDrawer />
           <main className={classes.content}>
             <div className={classes.toolbar} />
-
-            <Grid container direction="column" justify="center" alignItems="center" spacing={24} className={classes.grid}>
-              {topics.map(topic => {
-                return (
-                  <Grid item className={classes.gridItem} xs={12}>
-                    <Topic id={topic.id} />
-                  </Grid>
-                )
-              })}
-            </Grid>
-
-            <form onSubmit={this.handleSubmit}>
-              <Fab type="submit" color="primary" aria-label="Add" className={classes.fab}>
-                <Add />
-              </Fab>
-            </form>
+            <FetchButton />
+            <NotificationsSwitch />
+            <hr />
+            <UserSettings />
+            <Topics topics={topics} questions={questions} />
+            <AddTopic handleSubmit={this.handleAddTopicSubmit} />
           </main>
         </div>
       );

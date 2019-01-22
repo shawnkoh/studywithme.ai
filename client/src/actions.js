@@ -35,6 +35,12 @@ function receiveCreateTopic(response) {
   return { type: RECEIVE_CREATE_TOPIC, response };
 }
 
+// export const REQUEST_EDIT_TOPIC = 'REQUEST_EDIT_TOPIC';
+
+// function requestEditTopic() {
+//   return { type: REQUEST_EDIT_TOPIC };
+// }
+
 // Thunk middleware passes dispatch method as an argument to the function
 // thus making it able to dispatch functions to itself
 
@@ -61,6 +67,19 @@ export function createTopic(title, description) {
     let payload = {title: title, description: description};
     return axios.post('/api/topics', payload)
       .then(response => dispatch(receiveCreateTopic(response.data)))
+  }
+}
+
+export const RECEIVE_EDIT_TOPIC = 'RECEIVE_EDIT_TOPIC';
+
+function receiveEditTopic(response) {
+  return { type: RECEIVE_EDIT_TOPIC, response };
+}
+
+export function editTopic(id, payload) {
+  return function(dispatch) {
+    return axios.patch(`/api/topics/${id}`, payload)
+      .then(response => dispatch(receiveEditTopic(response.data)))
   }
 }
 

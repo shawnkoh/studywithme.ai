@@ -11,12 +11,9 @@ class CustomInput extends Component {
     super(props);
     this.form = React.createRef();
     this.state = {
-      initialValue: this.props.value,
       disableUnderline: true,
+      focus: false,
     };
-  }
-
-  componentDidMount() {
   }
 
   handleMouseEnter = () => {
@@ -31,35 +28,35 @@ class CustomInput extends Component {
     this.setState({ focus: true });
   }
 
-  handleBlur = () => {
+  handleBlur = (event) => {
+    const { defaultValue, action } = this.props;
     this.setState({ disableUnderline: true, focus: false });
-    if (this.props.value === '') {
-      // reload initial value
+
+    if (event.target.value) {
+      if (event.target.value !== defaultValue ) {
+        action(event.target.value);
+      }
     } else {
-      this.form.current.dispatchEvent(new Event('submit'));
+      event.target.value = defaultValue;
     }
   }
 
   render() {
-    const { handleSubmit, value, handleChange } = this.props;
-    const { disableUnderline} = this.state;
+    const { multiline, defaultValue } = this.props;
+    const { disableUnderline } = this.state;
     return (
-      <form ref={this.form} onSubmit={handleSubmit} name={this.props.name}>
-        <Input
-          required
-          fullWidth
-          multiline={this.props.multiline}
-          autoComplete='off'
-          name={this.props.name}
-          disableUnderline={disableUnderline}
-          onMouseEnter={this.handleMouseEnter}
-          onMouseLeave={this.handleMouseLeave}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          value={value}
-          onChange={handleChange}
-        />
-      </form>
+      <Input
+        required
+        fullWidth
+        multiline={multiline}
+        autoComplete='off'
+        disableUnderline={disableUnderline}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
+        defaultValue={defaultValue}
+      />
     );
   }
 }

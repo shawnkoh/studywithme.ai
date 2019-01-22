@@ -5,7 +5,8 @@ import {
   REQUEST_TOPICS,
   RECEIVE_TOPICS,
   RECEIVE_QUESTIONS,
-  REQUEST_QUESTIONS
+  REQUEST_QUESTIONS,
+  RECEIVE_EDIT_TOPIC,
 } from './actions';
 
 const handleFabSubmit = (event) => {
@@ -48,6 +49,10 @@ function topics(state=initialStates.topics, action) {
       return action.response;
     case RECEIVE_CREATE_TOPIC:  
       return state.concat(action.response);
+    case RECEIVE_EDIT_TOPIC:
+      return state.map(topic => (
+        topic.id === action.response.id ? action.response : topic
+      ));
     default:
       return state;
   }

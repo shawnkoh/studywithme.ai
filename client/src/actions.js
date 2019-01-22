@@ -35,12 +35,6 @@ function receiveCreateTopic(response) {
   return { type: RECEIVE_CREATE_TOPIC, response };
 }
 
-// export const REQUEST_EDIT_TOPIC = 'REQUEST_EDIT_TOPIC';
-
-// function requestEditTopic() {
-//   return { type: REQUEST_EDIT_TOPIC };
-// }
-
 // Thunk middleware passes dispatch method as an argument to the function
 // thus making it able to dispatch functions to itself
 

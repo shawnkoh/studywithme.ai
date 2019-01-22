@@ -4,7 +4,7 @@ class TopicsController < ApplicationController
 
   # GET /topics
   def index
-    @topics = Topic.select("id", "title", "description", "archived").all
+    @topics = Topic.all
 
     render json: @topics.to_json
   end
@@ -19,7 +19,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new(topic_params)
 
     if @topic.save
-      render json: @topic.to_json(include: :questions), status: :created, location: @topic
+      render json: @topic.to_json, status: :created, location: @topic
     else
       render json: @topic.errors, status: :unprocessable_entity
     end

@@ -1,27 +1,31 @@
-import React, { Component } from 'react';
-import { Grid, withStyles } from "@material-ui/core";
-import Topic from "./Topic";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Grid, CircularProgress } from '@material-ui/core';
+import Topic from './Topic';
 
-const styles = {
-  gridItem: {
-  }
-}
+const mapStateToProps = (state) => ({
+  isTopicsFetching: state.fetchStatus.isTopicsFetching,
+  topics: state.topics,
+});
 
-class Topics extends Component {  
-  render() {
-    const { topics, questions, classes } = this.props;
+const Topics = ({isTopicsFetching, topics}) => {
+  if (isTopicsFetching) {
     return (
-      <Grid container direction="column" justify="center" alignItems="center" spacing={24} className={classes.grid}>
-        {topics.map(topic => {
-          return (
-            <Grid item className={classes.gridItem} xs={12}>
-              <Topic topic={topic} questions={questions} />
-            </Grid>
-          )
-        })}
+      <Grid container justify='center'>
+          <CircularProgress />
       </Grid>
     )
   }
+
+  return (
+    <Grid container direction='column' justify='center' alignItems='stretch' spacing={24}>
+      {topics.map(topic => (
+        <Grid item xs={12} key={topic.id}>
+          <Topic topic={topic} />
+        </Grid>
+      ))}
+    </Grid>
+  )
 }
 
-export default withStyles(styles)(Topics);
+export default connect(mapStateToProps)(Topics);

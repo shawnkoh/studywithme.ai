@@ -14,18 +14,58 @@ import CustomInput from './CustomInput';
 import Questions from './Questions';
 
 const styles = theme => ({
-  root: {
-    display: 'flex',
-  },
   progress: {
     flexGrow: 1,
   },
   card: {
-    flexGrow: 1,
   },
 });
 
 class Topic extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { expanded: false };
+  }
+
+  handleExpandClick = () => {
+    this.setState(state => ({ expanded: !state.expanded }))
+  }
+
+  render() {
+    const { topic, classes } = this.props;
+    return (
+      <Card className={classes.card}>
+        <CardHeader
+          action={<SimpleMenu />}
+          title={topic.title}
+          subheader={topic.description}
+        />
+
+        <CardActions>
+          <LinearProgress
+            width='100%'
+            variant='determinate'
+            value={66}
+            className={classes.progress}
+          />
+          <IconButton onClick={this.handleExpandClick}>
+            <ExpandMoreRounded />
+          </IconButton>
+        </CardActions>
+
+        <Collapse in={this.state.expanded} time="auto" unmountOnExit>
+          <CardContent>
+            Peek a boo!
+          </CardContent>
+        </Collapse>
+      </Card>
+    )
+  }
+}
+
+export default withStyles(styles, { withTheme: true })(Topic);
+
+class TopicOld extends Component {
   constructor(props) {
     super(props);
     this.state = { expanded: false };
@@ -49,8 +89,7 @@ class Topic extends Component {
   }
 
   render() {
-    const { topic, questions } = this.props;
-    const { classes, theme } = this.props;
+    const { topic, questions, classes, theme } = this.props;
 
     if (topic) {
       return (
@@ -103,4 +142,4 @@ Topic.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Topic);
+// export default withStyles(styles, { withTheme: true })(Topic);

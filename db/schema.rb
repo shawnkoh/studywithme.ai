@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2019_01_20_091949) do
   create_table "topics", force: :cascade do |t|
     t.text "title"
     t.text "description"
-    t.boolean "archived", default: true
+    t.boolean "archived", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

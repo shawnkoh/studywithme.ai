@@ -29,20 +29,37 @@ class CustomInput extends Component {
   }
 
   handleBlur = (event) => {
-    const { defaultValue, action } = this.props;
-    this.setState({ disableUnderline: true, focus: false });
+    const { defaultValue, action, allowActionBlank, clearAfterAction } = this.props;
+    this.setState({ disableUnderline: true, focus: false })
 
-    if (event.target.value) {
-      if (event.target.value !== defaultValue ) {
-        action(event.target.value);
+    if (!action) {
+      return;
+    }
+
+    if (defaultValue && event.target.value === defaultValue) {
+      return;
+    }
+
+    if (!allowActionBlank && !event.target.value) {
+      if (defaultValue) {
+        event.target.value = defaultValue;
       }
-    } else {
-      event.target.value = defaultValue;
+      return;
+    }
+
+    if (allowActionBlank && !event.target.value && !defaultValue) {
+      return;
+    }
+    
+    action(event.target.value);
+
+    if (clearAfterAction) {
+      event.target.value = '';
     }
   }
 
   render() {
-    const { multiline, defaultValue } = this.props;
+    const { multiline, defaultValue, placeholder } = this.props;
     const { disableUnderline } = this.state;
     return (
       <Input
@@ -56,6 +73,7 @@ class CustomInput extends Component {
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
         defaultValue={defaultValue}
+        placeholder={placeholder}
       />
     );
   }

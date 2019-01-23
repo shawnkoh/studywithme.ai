@@ -81,9 +81,10 @@ class ResponsiveDrawer extends React.Component {
 
         <List component="nav">
           <ListItem button selected>
-            <ListItemIcon><ListRounded /></ListItemIcon>
-            <ListItemText primary="Subjects" />
-            <Badge color="secondary" badgeContent={7} />
+            <Badge color="secondary" badgeContent={7}>
+              <ListItemIcon><ListRounded /></ListItemIcon>
+              <ListItemText primary="Subjects" />
+            </Badge>
           </ListItem>
 
           <ListItem button>

@@ -14,7 +14,7 @@ const styles = theme => ({
 
 const FloatingActionButton = ({handleFabSubmit, classes, dispatch}) => {
   return (
-    <Fab onClick={() => dispatch(createTopic('new title', 'description'))} type='submit' color='primary' aria-label='Add' className={classes.fab}>
+   <Fab onClick={() => dispatch(createTopic('', ''))} type='submit' color='primary' aria-label='Add' className={classes.fab}>
       <Add />
     </Fab>
   )

@@ -11,12 +11,17 @@ class SimpleMenu extends React.Component {
     anchorEl: null,
   };
 
-  handleClick = event => {
+  handleClick = (event) => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
   handleClose = () => {
     this.setState({ anchorEl: null });
+  };
+
+  handleDelete = () => {
+    this.props.handleDelete();
+    this.handleClose();
   };
 
   render() {
@@ -45,7 +50,7 @@ class SimpleMenu extends React.Component {
             <ListItemIcon><ArrowForwardRounded /></ListItemIcon>
             <ListItemText primary="Move to subject" />
           </MenuItem>
-          <MenuItem onClick={this.handleClose}>
+          <MenuItem onClick={this.handleDelete}>
             <ListItemIcon>
               <DeleteRounded />
             </ListItemIcon>

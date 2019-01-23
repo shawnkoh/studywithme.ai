@@ -1,11 +1,12 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /questions
   def index
     @questions = Question.all
 
-    render json: @questions
+    render json: @questions.to_json
   end
 
   # GET /questions/1

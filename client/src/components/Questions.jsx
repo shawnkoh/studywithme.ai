@@ -1,31 +1,58 @@
 import React, { Component } from 'react';
-import { Table, TableHead, TableRow, TableCell, TableSortLabel, TableBody } from "@material-ui/core";
+import { connect } from 'react-redux';
+import { Table, TableHead, TableRow, TableCell, TableSortLabel, TableBody, CircularProgress } from "@material-ui/core";
 import CustomInput from './CustomInput';
 import Question from './Question';
+import { createQuestion } from '../actions';
+
+const mapStateToProps = (state) => ({
+  isQuestionsFetching: state.fetchStatus.isTopicsFetching,
+  questions: state.questions,
+});
+
+const body = (children) => (
+  <Table>
+    <TableHead>
+      <TableRow>
+        <TableCell width='50%'>
+          <TableSortLabel>Question</TableSortLabel>
+        </TableCell>
+        <TableCell>
+          <TableSortLabel>Difficulty</TableSortLabel>
+        </TableCell>
+        <TableCell>
+          <TableSortLabel>Next Revision</TableSortLabel>
+        </TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      {children}
+    </TableBody>
+  </Table>
+)
 
 class Questions extends Component {
   render() {
-    return (
-      <Table>
-        <TableHead>
+    const { topic_id, questions, isQuestionsFetching, dispatch } = this.props;
+    if (isQuestionsFetching) {
+      return (
+        body (
           <TableRow>
-            <TableCell width='100%'>
-              <TableSortLabel>Question</TableSortLabel>
-            </TableCell>
-            <TableCell>
-              <TableSortLabel>Difficulty</TableSortLabel>
-            </TableCell>
-            <TableCell>
-              <TableSortLabel>Next Revision</TableSortLabel>
+            <TableCell colSpan={3}>
+              <CircularProgress />
             </TableCell>
           </TableRow>
-        </TableHead>
+        )
+      )
+    }
 
-        <TableBody>
-          {this.props.questions.map(question => {
-            if (this.props.topic_id === question.topic_id) {
+    return (
+      body (
+        <React.Fragment>
+          {Object.values(questions).map(question => {
+            if (topic_id === question.topic_id) {
               return (
-                <Question question={question} />
+                <Question question={question} key={question.id} />
               )
             };
             return null;
@@ -34,13 +61,16 @@ class Questions extends Component {
           <TableRow>
             <TableCell colSpan={3}>
               <CustomInput
+                placeholder='New question'
+                action={(name) => {dispatch(createQuestion(topic_id, name))}}
+                clearAfterAction
               />
             </TableCell>
           </TableRow>
-        </TableBody>
-      </Table>
+        </React.Fragment>
+      )
     )
   }
 }
 
-export default Questions;
+export default connect(mapStateToProps)(Questions);

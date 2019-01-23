@@ -7,6 +7,9 @@ import {
   RECEIVE_QUESTIONS,
   REQUEST_QUESTIONS,
   RECEIVE_EDIT_TOPIC,
+  RECEIVE_DELETE_TOPIC,
+  RECEIVE_CREATE_QUESTION,
+  RECEIVE_EDIT_QUESTION,
 } from './actions';
 
 const handleFabSubmit = (event) => {
@@ -44,16 +47,21 @@ function fetchStatus(state=initialStates.fetchStatus, action) {
 }
 
 function topics(state=initialStates.topics, action) {
-  let topic = action.response;
   switch (action.type) {
     case RECEIVE_TOPICS:
       let reducer = (accumulator, topic) => (
         Object.assign(accumulator, {[topic.id]: topic})
       )
-      return action.response.reduce(reducer, state);
+      return action.response.data.reduce(reducer, state);
     case RECEIVE_CREATE_TOPIC:
     case RECEIVE_EDIT_TOPIC:
+      let topic = action.response.data;
       return Object.assign({}, state, {[topic.id]: topic});
+    case RECEIVE_DELETE_TOPIC:
+    // uses destructuring assignment syntax to delete topic immutably
+    // to be replaced by createReducer from redux-starter-kit once I have sufficient native JS experience
+      let { [action.id]: deletedTopic, ...withoutDeletedTopics } = state;
+      return withoutDeletedTopics;
     default:
       return state;
   }
@@ -62,7 +70,14 @@ function topics(state=initialStates.topics, action) {
 function questions(state=initialStates.questions, action) {
   switch (action.type) {
     case RECEIVE_QUESTIONS:
-      return Object.assign({}, state, action.response);
+      let reducer = (accumulator, question) => (
+        Object.assign(accumulator, {[question.id]: question})
+      );
+      return action.response.data.reduce(reducer, state);
+    case RECEIVE_CREATE_QUESTION:
+    case RECEIVE_EDIT_QUESTION:
+      let question = action.response.data;
+      return {...state, [question.id]: question};
     default:
       return state;
   }

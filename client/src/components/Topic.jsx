@@ -13,12 +13,7 @@ import axios from 'axios';
 import SimpleMenu from './SimpleMenu';
 import CustomInput from './CustomInput';
 import Questions from './Questions';
-import { editTopic } from '../actions';
-
-
-// function(newTitle) {
-//   dispatch(editTopic(topic.id, {title: newTitle}))
-// }
+import { editTopic, deleteTopic } from '../actions';
 
 const styles = theme => ({
   progress: {
@@ -38,21 +33,35 @@ class Topic extends Component {
     this.setState(state => ({ expanded: !state.expanded }))
   }
 
+  handleDelete = () => {
+    const { topic, dispatch } = this.props;
+    dispatch(deleteTopic(topic.id));
+  }
+
   render() {
     const { topic, classes, dispatch } = this.props;
     return (
       <Card className={classes.card}>
         <form>
         <CardHeader
-          action={<SimpleMenu />}
+          action={<SimpleMenu handleDelete={this.handleDelete} />}
           title={
             <CustomInput
               defaultValue={topic.title}
-              action={(newTitle) => {dispatch( editTopic(topic.id, {title: newTitle}) )}
-              }
+              action={(newTitle) => {dispatch( editTopic(topic.id, {title: newTitle}) )}}
+              placeholder='Title'
+              allowActionBlank={true}
             />
           }
-          subheader={<CustomInput defaultValue={topic.description} />}
+          subheader={
+            <CustomInput
+              defaultValue={topic.description}
+              multiline
+              action={(newDescription) => {dispatch( editTopic(topic.id, {description: newDescription}) )}}
+              placeholder='Description'
+              allowActionBlank={true}
+            />
+          }
         />
         </form>
 
@@ -70,7 +79,7 @@ class Topic extends Component {
 
         <Collapse in={this.state.expanded} time="auto" unmountOnExit>
           <CardContent>
-            Peek a boo!
+            <Questions topic_id={topic.id} />
           </CardContent>
         </Collapse>
       </Card>

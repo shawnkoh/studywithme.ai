@@ -19,7 +19,7 @@ const initialStates = {
     isQuestionsFetching: false,
     isTopicCreating: false,
   },
-  topics: [],
+  topics: {},
   questions: {},
   handleFabSubmit: handleFabSubmit
 }
@@ -44,15 +44,16 @@ function fetchStatus(state=initialStates.fetchStatus, action) {
 }
 
 function topics(state=initialStates.topics, action) {
+  let topic = action.response;
   switch (action.type) {
     case RECEIVE_TOPICS:
-      return action.response;
-    case RECEIVE_CREATE_TOPIC:  
-      return state.concat(action.response);
+      let reducer = (accumulator, topic) => (
+        Object.assign(accumulator, {[topic.id]: topic})
+      )
+      return action.response.reduce(reducer, state);
+    case RECEIVE_CREATE_TOPIC:
     case RECEIVE_EDIT_TOPIC:
-      return state.map(topic => (
-        topic.id === action.response.id ? action.response : topic
-      ));
+      return Object.assign({}, state, {[topic.id]: topic});
     default:
       return state;
   }

@@ -19,7 +19,7 @@ const Topics = ({isTopicsFetching, topics}) => {
 
   return (
     <Grid container direction='column' justify='center' alignItems='stretch' spacing={24}>
-      {topics.map(topic => (
+      {Object.values(topics).map(topic => (
         <Grid item xs={12} key={topic.id}>
           <Topic topic={topic} />
         </Grid>

@@ -14,12 +14,12 @@ const body = (children) => (
   <Table>
     <TableHead>
       <TableRow>
-        <TableCell width='50%'>
+        <TableCell width='60%'>
           <TableSortLabel>Question</TableSortLabel>
         </TableCell>
         <TableCell>
           <TableSortLabel>Difficulty</TableSortLabel>
-        </TableCell>
+        </TableCell>    
         <TableCell>
           <TableSortLabel>Next Revision</TableSortLabel>
         </TableCell>

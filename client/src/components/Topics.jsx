@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Grid, CircularProgress } from '@material-ui/core';
 import Topic from './Topic';
+import QuestionDialog from './QuestionDialog'
 
 const mapStateToProps = (state) => ({
   isTopicsFetching: state.fetchStatus.isTopicsFetching,
@@ -18,13 +19,17 @@ const Topics = ({isTopicsFetching, topics}) => {
   }
 
   return (
-    <Grid container direction='column' justify='center' alignItems='stretch' spacing={24}>
-      {Object.values(topics).map(topic => (
-        <Grid item xs={12} key={topic.id}>
-          <Topic topic={topic} />
-        </Grid>
-      ))}
-    </Grid>
+    <Fragment>
+      <Grid container direction='column' justify='center' alignItems='stretch' spacing={24}>
+        {Object.values(topics).map(topic => (
+          <Grid item xs={12} key={topic.id}>
+            <Topic topic={topic} />
+          </Grid>
+        ))}
+      </Grid>
+
+      <QuestionDialog />
+    </Fragment>
   )
 }
 

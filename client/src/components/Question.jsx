@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TableRow, TableCell } from '@material-ui/core';
+import { TableRow, TableCell, Select, MenuItem, Input } from '@material-ui/core';
 import CustomInput from './CustomInput';
 import { DateTimePicker } from 'material-ui-pickers';
-import { editQuestion } from '../actions';
+import { editQuestion, openQuestion } from '../actions';
+
+const mapStateToProps = (state) => ({
+  openedQuestion: state.questions.openedQuestion
+});
 
 class Question extends Component {
 
@@ -21,9 +25,19 @@ class Question extends Component {
   }
 
   render() {
-    let { question, dispatch } = this.props;
+    let { question, dispatch, openedQuestion } = this.props;
     return (
-      <TableRow hover>
+      <TableRow
+        hover
+        onClick={
+          () => {
+            if (openedQuestion !== question.id) {
+              dispatch( openQuestion(question.id) )
+            }
+          }
+        }
+        selected={openedQuestion === question.id}
+      >
         <TableCell>
           <CustomInput
             defaultValue={question.name}
@@ -34,13 +48,20 @@ class Question extends Component {
           />
         </TableCell>
         <TableCell>
-          <CustomInput
-            defaultValue={question.difficulty}
-            allowActionBlank
-            action={
-              (difficulty) => {dispatch( editQuestion(question.id, {difficulty: difficulty}) )}
+          <Select
+            value={question.difficulty}
+            onChange={
+              (event) => {dispatch( editQuestion(question.id, {difficulty: event.target.value}) )}
             }
-          />
+            displayEmpty
+            autoWidth
+            input={<Input fullWidth />}
+          >
+            <MenuItem value="" />
+            <MenuItem value="Easy">Easy</MenuItem>
+            <MenuItem value="Okay">Okay</MenuItem>
+            <MenuItem value="Hard">Hard</MenuItem>
+          </Select>
         </TableCell>
         <TableCell>
           <DateTimePicker
@@ -49,6 +70,7 @@ class Question extends Component {
               (date) => {dispatch( editQuestion(question.id, {next_revision: date}) )}              
             }
             clearable
+            format={'MMM d h:mm aa'}
           />
         </TableCell>
       </TableRow>
@@ -56,4 +78,4 @@ class Question extends Component {
   }
 }
 
-export default connect()(Question);
+export default connect(mapStateToProps)(Question);

@@ -3,6 +3,7 @@ class CreateQuestions < ActiveRecord::Migration[5.2]
     create_table :questions do |t|
       t.references :topic, foreign_key: true
       t.text :name
+      t.json :nameJSON
       t.text :answer
       t.text :difficulty
       t.datetime :next_revision

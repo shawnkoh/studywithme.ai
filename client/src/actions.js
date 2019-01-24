@@ -2,6 +2,18 @@ import axios from 'axios';
 
 // Synchronous actions
 
+export const OPEN_QUESTION = 'OPEN_QUESTION';
+
+export function openQuestion(id) {
+  return { type: OPEN_QUESTION, id };
+}
+
+export const CLOSE_QUESTION = 'CLOSE_QUESTION';
+
+export function closeQuestion() {
+  return { type: CLOSE_QUESTION };
+}
+
 // Network request actions
 
 export const REQUEST_TOPICS = 'REQUEST_TOPICS';

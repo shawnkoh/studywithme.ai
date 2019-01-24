@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_01_20_091949) do
   create_table "questions", force: :cascade do |t|
     t.integer "topic_id"
     t.text "name"
+    t.json "nameJSON"
     t.text "answer"
     t.text "difficulty"
     t.datetime "next_revision"

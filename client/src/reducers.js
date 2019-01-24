@@ -10,6 +10,8 @@ import {
   RECEIVE_DELETE_TOPIC,
   RECEIVE_CREATE_QUESTION,
   RECEIVE_EDIT_QUESTION,
+  OPEN_QUESTION,
+  CLOSE_QUESTION,
 } from './actions';
 
 const handleFabSubmit = (event) => {
@@ -69,6 +71,11 @@ function topics(state=initialStates.topics, action) {
 
 function questions(state=initialStates.questions, action) {
   switch (action.type) {
+    case OPEN_QUESTION:
+      return {...state, openedQuestion: action.id}
+    case CLOSE_QUESTION:
+      let { openedQuestion: id, ...withoutOpenQuestion } = state;
+      return withoutOpenQuestion;
     case RECEIVE_QUESTIONS:
       let reducer = (accumulator, question) => (
         Object.assign(accumulator, {[question.id]: question})

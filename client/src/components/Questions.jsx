@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table, TableHead, TableRow, TableCell, TableSortLabel, TableBody, CircularProgress } from "@material-ui/core";
-import CustomInput from './CustomInput';
 import Question from './Question';
 import { createQuestion } from '../actions';
+import CustomEditor from './CustomEditor';
 
 const mapStateToProps = (state) => ({
   isQuestionsFetching: state.fetchStatus.isTopicsFetching,
@@ -60,10 +60,19 @@ class Questions extends Component {
 
           <TableRow>
             <TableCell colSpan={3}>
-              <CustomInput
+              <CustomEditor
                 placeholder='New question'
-                action={(name) => {dispatch(createQuestion(topic_id, name))}}
-                clearAfterAction
+                handleSave={
+                  (value, valueJSON) => {
+                    let payload = {
+                      topic_id: topic_id,
+                      name: value,
+                      nameJSON: valueJSON
+                    };
+                    dispatch( createQuestion(payload) );
+                  }
+                }
+                clearAfterSave
               />
             </TableCell>
           </TableRow>
@@ -74,3 +83,23 @@ class Questions extends Component {
 }
 
 export default connect(mapStateToProps)(Questions);
+
+// handleSave={
+//   (others) => {
+//     let payload = Object.assign({}, { topic_id: topic_id }, others);
+//     dispatch( createQuestion(payload) );
+//   }
+// }
+
+// if (initialValue.document !== value.document) {
+//   let payload = {
+//     name: Plain.serialize(value),
+//     nameJSON: JSON.stringify(value.toJSON()),
+//   }
+//   handleSave(payload);
+
+//   if (clearAfterSave) {
+//     let clearValue = Plain.deserialize('');
+//     this.setState({ initialValue: clearValue, value: clearValue });
+//   }
+// }

@@ -108,11 +108,10 @@ function receiveCreateQuestion(response) {
   return { type: RECEIVE_CREATE_QUESTION, response };
 }
 
-export function createQuestion(topic_id, name, answer) {
+export function createQuestion(payload) {
   return function (dispatch) {
-    let payload = { topic_id: topic_id, name: name, answer: answer };
     return axios.post('/api/questions', payload)
-      .then(response => dispatch(receiveCreateQuestion(response)))
+      .then( response => dispatch(receiveCreateQuestion(response)) )
   }
 }
 

@@ -25,7 +25,7 @@ class QuestionDialog extends Component {
   }
 
   handleNameChange = ({ value }) => {
-    this.setState({ nameValue: value, nameJSON: value })
+    this.setState({ nameValue: value })
   }
 
   handleAnswerChange = ({ value }) => {
@@ -36,8 +36,9 @@ class QuestionDialog extends Component {
     const { question, dispatch } = this.props;
     let payload = {
       name: Plain.serialize(this.state.nameValue),
-      nameJSON: JSON.stringify(this.state.nameJSON.toJSON()),
+      nameJSON: JSON.stringify(this.state.nameValue.toJSON()),
       answer: Plain.serialize(this.state.answerValue),
+      answerJSON: JSON.stringify(this.state.answerValue.toJSON()),
     }
     dispatch(editQuestion(question.id, payload));
     dispatch(closeQuestion());
@@ -57,12 +58,25 @@ class QuestionDialog extends Component {
     }
 
     if (!this.state.initialised) {
-      const defaultValue = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      var nameValue;
+      var answerValue;
+
+      if (question.nameJSON) {
+        nameValue = Value.fromJSON(JSON.parse(question.nameJSON))
+      } else {
+        nameValue = Plain.deserialize('');
+      }
+
+      if (question.answerJSON) {
+        answerValue = Value.fromJSON(JSON.parse(question.answerJSON))
+      } else {
+        answerValue = Plain.deserialize('');
+      }
+
       this.setState({
         initialised: true,
-        nameValue: Plain.deserialize(question.name || defaultValue),
-        answerValue: Plain.deserialize(question.answer || defaultValue),
-        nameJSON: Value.fromJSON(question.nameJSON || defaultValue),
+        nameValue: nameValue,
+        answerValue: answerValue,
       })
     }
 

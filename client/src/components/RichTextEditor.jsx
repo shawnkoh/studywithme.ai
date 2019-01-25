@@ -1,9 +1,18 @@
 import { Editor } from 'slate-react'
-
 import React, { Fragment } from 'react'
 import { isKeyHotkey } from 'is-hotkey'
 import { IconButton, Divider } from '@material-ui/core';
-import { FormatBoldRounded, FormatItalicRounded, FormatUnderlinedRounded, CodeRounded, FormatQuoteRounded, FormatListNumberedRounded, FormatListBulletedRounded, LooksOneRounded, LooksTwoRounded } from '@material-ui/icons';
+import {
+  FormatBoldRounded,
+  FormatItalicRounded,
+  FormatUnderlinedRounded,
+  CodeRounded,
+  FormatQuoteRounded,
+  FormatListNumberedRounded,
+  FormatListBulletedRounded,
+  LooksOneRounded,
+  LooksTwoRounded
+} from '@material-ui/icons';
 
 const DEFAULT_NODE = 'paragraph'
 
@@ -12,7 +21,7 @@ const isItalicHotkey = isKeyHotkey('mod+i')
 const isUnderlinedHotkey = isKeyHotkey('mod+u')
 const isCodeHotkey = isKeyHotkey('mod+`')
 
-class RichTextExample extends React.Component {
+class RichTextEditor extends React.Component {
   hasMark = type => {
     const { value } = this.props
     return value.activeMarks.some(mark => mark.type === type)
@@ -200,4 +209,4 @@ class RichTextExample extends React.Component {
   }
 }
 
-export default RichTextExample
+export default RichTextEditor;

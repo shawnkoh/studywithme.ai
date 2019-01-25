@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_01_20_091949) do
     t.text "name"
     t.json "nameJSON"
     t.text "answer"
+    t.json "answerJSON"
     t.text "difficulty"
     t.datetime "next_revision"
     t.datetime "created_at", null: false

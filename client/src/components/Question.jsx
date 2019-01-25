@@ -1,29 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TableRow, TableCell, Select, MenuItem, Input } from '@material-ui/core';
-import CustomInput from './CustomInput';
 import { DateTimePicker } from 'material-ui-pickers';
 import { editQuestion, openQuestion } from '../actions';
+import CustomEditor from './CustomEditor';
 
 const mapStateToProps = (state) => ({
   openedQuestion: state.questions.openedQuestion
 });
 
 class Question extends Component {
-
-  shortenDate = (date) => {
-    if (!date) {
-      return;
-    }
-
-    let formatter = new Intl.DateTimeFormat('en-GB', {
-      day: 'numeric',
-      month: 'short',
-    });
-
-    return formatter.format(new Date(date));
-  }
-
   render() {
     let { question, dispatch, openedQuestion } = this.props;
     return (
@@ -39,19 +25,24 @@ class Question extends Component {
         selected={openedQuestion === question.id}
       >
         <TableCell>
-          <CustomInput
-            defaultValue={question.name}
-            allowActionBlank
-            action={
-              (name) => {dispatch( editQuestion(question.id, {name: name}) )}
-            }
+          <CustomEditor
+            value={question.nameJSON}
+            placeholder='Enter your question here...'
+            readOnly
           />
         </TableCell>
         <TableCell>
           <Select
             value={question.difficulty}
+            onClick={
+              (event) => {
+                event.stopPropagation();
+              }
+            }
             onChange={
-              (event) => {dispatch( editQuestion(question.id, {difficulty: event.target.value}) )}
+              (event) => {
+                dispatch( editQuestion(question.id, {difficulty: event.target.value}) )
+              }
             }
             displayEmpty
             autoWidth

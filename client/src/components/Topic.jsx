@@ -13,6 +13,7 @@ import SimpleMenu from './SimpleMenu';
 import CustomInput from './CustomInput';
 import Questions from './Questions';
 import { editTopic, deleteTopic } from '../actions';
+import { overdueQuestions } from '../queries';
 
 const styles = theme => ({
   progress: {
@@ -38,12 +39,17 @@ class Topic extends Component {
   }
 
   render() {
-    const { topic, classes, dispatch } = this.props;
+    const { topic, questions, classes, dispatch } = this.props;
     return (
       <Card className={classes.card}>
         <form>
         <CardHeader
-          action={<SimpleMenu handleDelete={this.handleDelete} />}
+          action={
+            <SimpleMenu
+              overdue={overdueQuestions(questions).length}
+              handleDelete={this.handleDelete}
+            />
+          }
           title={
             <CustomInput
               fullWidth

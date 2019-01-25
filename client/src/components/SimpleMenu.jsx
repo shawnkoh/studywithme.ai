@@ -4,7 +4,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {
   MoreVertRounded, BookRounded, ArrowForwardRounded, DeleteRounded,
 } from '@material-ui/icons';
-import { IconButton, ListItemIcon, ListItemText } from '@material-ui/core';
+import { IconButton, ListItemIcon, ListItemText, Badge } from '@material-ui/core';
+import ConditionalWrap from './ConditionalWrap';
 
 class SimpleMenu extends React.Component {
   state = {
@@ -25,6 +26,7 @@ class SimpleMenu extends React.Component {
   };
 
   render() {
+    const { overdue } = this.props;
     const { anchorEl } = this.state;
 
     return (
@@ -34,7 +36,12 @@ class SimpleMenu extends React.Component {
           aria-haspopup="true"
           onClick={this.handleClick}
         >
-          <MoreVertRounded />
+          <ConditionalWrap
+            condition={overdue}
+            wrap={children => <Badge color='secondary' badgeContent={overdue}>{children}</Badge>}
+          >
+            <MoreVertRounded />
+          </ConditionalWrap>
         </IconButton>
         <Menu
           id="simple-menu"
@@ -43,8 +50,13 @@ class SimpleMenu extends React.Component {
           onClose={this.handleClose}
         >
           <MenuItem onClick={this.handleClose}>
-            <ListItemIcon><BookRounded /></ListItemIcon>
-            <ListItemText primary="Revise Now" />
+            <ConditionalWrap
+              condition={overdue}
+              wrap={children=> <Badge color='secondary' badgeContent={overdue}>{children}</Badge>}
+            >
+              <ListItemIcon><BookRounded /></ListItemIcon>
+              <ListItemText primary="Revise Now" />
+            </ConditionalWrap>
           </MenuItem>
           <MenuItem onClick={this.handleClose}>
             <ListItemIcon><ArrowForwardRounded /></ListItemIcon>

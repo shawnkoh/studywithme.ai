@@ -52,7 +52,10 @@ class Questions extends Component {
           {Object.values(questions).map(question => {
             if (topic_id === question.topic_id) {
               return (
-                <Question question={question} key={question.id} />
+                <Question
+                  question={question}
+                  key={question.id}
+                />
               )
             };
             return null;

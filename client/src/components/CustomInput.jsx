@@ -58,10 +58,6 @@ class CustomInput extends Component {
     }
   }
 
-  handleClick = (event) => {
-    event.stopPropagation();
-  }
-
   render() {
     const { multiline, defaultValue, placeholder, fullWidth } = this.props;
     const { disableUnderline } = this.state;
@@ -76,7 +72,6 @@ class CustomInput extends Component {
         onMouseLeave={this.handleMouseLeave}
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
-        onClick={this.handleClick}
         defaultValue={defaultValue}
         placeholder={placeholder}
       />

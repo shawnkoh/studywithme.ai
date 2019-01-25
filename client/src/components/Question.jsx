@@ -15,16 +15,17 @@ class Question extends Component {
     return (
       <TableRow
         hover
-        onClick={
-          () => {
-            if (openedQuestion !== question.id) {
-              dispatch( openQuestion(question.id) )
-            }
-          }
-        }
         selected={openedQuestion === question.id}
       >
-        <TableCell>
+        <TableCell
+          onClick={
+            () => {
+              if (openedQuestion !== question.id) {
+                dispatch( openQuestion(question.id) )
+              }
+            }
+          }
+        >
           <CustomEditor
             value={question.nameJSON}
             placeholder='Enter your question here...'
@@ -34,11 +35,6 @@ class Question extends Component {
         <TableCell>
           <Select
             value={question.difficulty}
-            onClick={
-              (event) => {
-                event.stopPropagation();
-              }
-            }
             onChange={
               (event) => {
                 dispatch( editQuestion(question.id, {difficulty: event.target.value}) )

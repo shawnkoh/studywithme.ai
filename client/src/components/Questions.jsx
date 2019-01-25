@@ -83,23 +83,3 @@ class Questions extends Component {
 }
 
 export default connect(mapStateToProps)(Questions);
-
-// handleSave={
-//   (others) => {
-//     let payload = Object.assign({}, { topic_id: topic_id }, others);
-//     dispatch( createQuestion(payload) );
-//   }
-// }
-
-// if (initialValue.document !== value.document) {
-//   let payload = {
-//     name: Plain.serialize(value),
-//     nameJSON: JSON.stringify(value.toJSON()),
-//   }
-//   handleSave(payload);
-
-//   if (clearAfterSave) {
-//     let clearValue = Plain.deserialize('');
-//     this.setState({ initialValue: clearValue, value: clearValue });
-//   }
-// }

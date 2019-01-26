@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TableRow, TableCell, Select, MenuItem, Input, Badge, Chip } from '@material-ui/core';
+import { TableRow, TableCell, Select, MenuItem, Input, Badge, } from '@material-ui/core';
 import { DateTimePicker } from 'material-ui-pickers';
 import { editQuestion, openQuestion } from '../actions';
 import CustomEditor from './CustomEditor';
@@ -13,9 +13,6 @@ const mapStateToProps = (state) => ({
 });
 
 class Question extends Component {
-  handleTagsChange = (chips) => {
-  }
-
   render() {
     let { question, dispatch, openedQuestion } = this.props;
     return (

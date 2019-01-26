@@ -82,7 +82,7 @@ class Topic extends Component {
           <LinearProgress
             width='100%'
             variant='determinate'
-            value={66}
+            value={(questions.length - overdue) / questions.length * 100}
             className={classes.progress}
           />
           <Badge color='secondary' badgeContent={overdue}>
@@ -91,7 +91,7 @@ class Topic extends Component {
               onClick={this.handleReviseNow}
             >
             Revise Now
-          </Button>
+            </Button>
           </Badge>
           <IconButton onClick={this.handleExpandClick}>
             <ExpandMoreRounded />

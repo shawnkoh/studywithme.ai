@@ -1,8 +1,0 @@
-Almost done, <%= @user.username %>! To activate your account, we just need to verify your email address:
-<%= link_to @user.email, edit_account_activation_url(@user.activation_token, email: @user.email) %>
-This will let you receive notifications and password resets from us.
-Button not working? Paste the following link into your browser: <%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
-
-You're receiving this email because you recently created a new account or added a new email address. If this wasn't you, please ignore this email.
-
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>

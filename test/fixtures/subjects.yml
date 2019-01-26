@@ -1,8 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-CS1010J:
-  name: CS1010J
-  user: michael
-
-GET1023:
-  name: GET1023
-  user: michael

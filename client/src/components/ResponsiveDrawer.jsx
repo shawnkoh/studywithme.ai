@@ -16,7 +16,8 @@ import {
   ArrowBackRounded, TagFacesRounded, Settings, FaceRounded, ListRounded, StoreRounded,
 } from '@material-ui/icons';
 import { CssBaseline, TextField, Badge, Typography } from '@material-ui/core';
-
+import { connect } from 'react-redux';
+import { overdueQuestions } from '../queries';
 
 const drawerWidth = 240;
 
@@ -58,12 +59,11 @@ class ResponsiveDrawer extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
-
+    const { overdue, classes, theme } = this.props;
     const drawer = (
       <div>
         <Toolbar>
-          <Typography>
+          <Typography variant='subtitle1'>
             studywithme.ai
           </Typography>
         </Toolbar>
@@ -81,9 +81,9 @@ class ResponsiveDrawer extends React.Component {
 
         <List component="nav">
           <ListItem button selected>
-            <Badge color="secondary" badgeContent={7}>
+            <Badge color="secondary" badgeContent={overdue.length}>
               <ListItemIcon><ListRounded /></ListItemIcon>
-              <ListItemText primary="Subjects" />
+              <ListItemText primary="Topics" />
             </Badge>
           </ListItem>
 
@@ -181,4 +181,8 @@ ResponsiveDrawer.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
+const mapStateToProps = (state) => ({
+  overdue: overdueQuestions(state.questions),
+});
+
+export default connect(mapStateToProps)(withStyles(styles, { withTheme: true })(ResponsiveDrawer));

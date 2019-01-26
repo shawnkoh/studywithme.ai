@@ -4,8 +4,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {
   MoreVertRounded, BookRounded, ArrowForwardRounded, DeleteRounded,
 } from '@material-ui/icons';
-import { IconButton, ListItemIcon, ListItemText, Badge } from '@material-ui/core';
-import ConditionalWrap from './ConditionalWrap';
+import { IconButton, ListItemIcon, ListItemText, } from '@material-ui/core';
+import { deleteTopic, openQuiz } from '../actions';
 
 class SimpleMenu extends React.Component {
   state = {
@@ -21,17 +21,18 @@ class SimpleMenu extends React.Component {
   };
 
   handleDelete = () => {
-    this.props.handleDelete();
+    const { topic, dispatch } = this.props;
+    dispatch(deleteTopic(topic.id));
     this.handleClose();
-  };
-
-  handleReviseNow = () => {
-    this.props.handleReviseNow();
+  }
+  
+  handleReviseAll = () => {
+    const { questions, dispatch } = this.props;
+    dispatch(openQuiz(questions));
     this.handleClose();
   }
 
   render() {
-    const { overdue } = this.props;
     const { anchorEl } = this.state;
 
     return (
@@ -41,12 +42,7 @@ class SimpleMenu extends React.Component {
           aria-haspopup="true"
           onClick={this.handleClick}
         >
-          <ConditionalWrap
-            condition={overdue}
-            wrap={children => <Badge color='secondary' badgeContent={overdue}>{children}</Badge>}
-          >
-            <MoreVertRounded />
-          </ConditionalWrap>
+          <MoreVertRounded />
         </IconButton>
         <Menu
           id="simple-menu"
@@ -54,19 +50,14 @@ class SimpleMenu extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleReviseNow}>
-            <ConditionalWrap
-              condition={overdue}
-              wrap={children=> <Badge color='secondary' badgeContent={overdue}>{children}</Badge>}
-            >
-              <ListItemIcon><BookRounded /></ListItemIcon>
-              <ListItemText primary="Revise Now" />
-            </ConditionalWrap>
+          <MenuItem onClick={this.handleReviseAll}>
+            <ListItemIcon><BookRounded /></ListItemIcon>
+            <ListItemText primary="Revise All" />
           </MenuItem>
           <MenuItem onClick={this.handleClose}>
             <ListItemIcon><ArrowForwardRounded /></ListItemIcon>
-            <ListItemText primary="Move to subject" />
-          </MenuItem>
+            <ListItemText primary="Move to topic" />
+          </MenuItem> 
           <MenuItem onClick={this.handleDelete}>
             <ListItemIcon>
               <DeleteRounded />

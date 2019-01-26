@@ -16,10 +16,6 @@ import {
   CLOSE_QUIZ,
 } from './actions';
 
-const handleFabSubmit = (event) => {
-  event.preventDefault();
-}
-
 const initialStates = {
   fetchStatus: {
     isTopicsFetching: false,
@@ -29,7 +25,6 @@ const initialStates = {
   topics: {},
   questions: {},
   quiz: {},
-  handleFabSubmit: handleFabSubmit
 }
 
 function fetchStatus(state=initialStates.fetchStatus, action) {

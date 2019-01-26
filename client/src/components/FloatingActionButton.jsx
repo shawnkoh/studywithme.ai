@@ -12,7 +12,7 @@ const styles = theme => ({
   }
 });
 
-const FloatingActionButton = ({handleFabSubmit, classes, dispatch}) => {
+const FloatingActionButton = ({classes, dispatch}) => {
   return (
    <Fab onClick={() => dispatch(createTopic('', ''))} type='submit' color='primary' aria-label='Add' className={classes.fab}>
       <Add />
@@ -20,8 +20,4 @@ const FloatingActionButton = ({handleFabSubmit, classes, dispatch}) => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  handleFabSubmit: state.handleFabSubmit,
-});
-
-export default connect(mapStateToProps)(withStyles(styles)(FloatingActionButton));
+export default connect()(withStyles(styles)(FloatingActionButton));

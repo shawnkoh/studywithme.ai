@@ -4,7 +4,6 @@ import { TableRow, TableCell, Select, MenuItem, Input, Badge } from '@material-u
 import { DateTimePicker } from 'material-ui-pickers';
 import { editQuestion, openQuestion } from '../actions';
 import CustomEditor from './CustomEditor';
-import ConditionalWrap from './ConditionalWrap';
 
 // TODO: Highlight the Next Revision fields instead of surrounding it with a badge, need to learn how to inject CSS using MaterialUI's themes
 
@@ -54,17 +53,7 @@ class Question extends Component {
           </Select>
         </TableCell>
         <TableCell>
-          <ConditionalWrap
-            condition={new Date() > new Date(question.next_revision)}
-            wrap={children => (
-              <Badge
-                color='secondary'
-                badgeContent='!'
-              >
-              {children}
-              </Badge>
-            )}
-          >
+          <Badge color='secondary' badgeContent='!' invisible={!question.next_revision || new Date() < new Date(question.next_revision)}>
             <DateTimePicker
               value={question.next_revision}
               onChange={
@@ -73,7 +62,7 @@ class Question extends Component {
               clearable
               format={'MMM d h:mm aa'}
             />
-          </ConditionalWrap>
+          </Badge>
         </TableCell>
       </TableRow>
     )

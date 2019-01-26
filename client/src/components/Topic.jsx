@@ -7,12 +7,14 @@ import {
   IconButton,
   Collapse,
   LinearProgress,
+  Button,
+  Badge,
 } from '@material-ui/core';
 import { ExpandMoreRounded } from '@material-ui/icons';
 import SimpleMenu from './SimpleMenu';
 import CustomInput from './CustomInput';
 import Questions from './Questions';
-import { editTopic, deleteTopic, openQuiz } from '../actions';
+import { editTopic, openQuiz, } from '../actions';
 import { overdueQuestions } from '../queries';
 
 const styles = theme => ({
@@ -33,27 +35,25 @@ class Topic extends Component {
     this.setState(state => ({ expanded: !state.expanded }))
   }
 
-  handleDelete = () => {
-    const { topic, dispatch } = this.props;
-    dispatch(deleteTopic(topic.id));
-  }
-
   handleReviseNow = () => {
     const { questions, dispatch } = this.props;
-    dispatch(openQuiz(questions));
+    const overdue = overdueQuestions(questions);
+    dispatch( openQuiz(overdue) );
   }
 
   render() {
     const { topic, questions, classes, dispatch } = this.props;
+    const overdue = overdueQuestions(questions).length;
     return (
       <Card className={classes.card}>
         <form>
         <CardHeader
           action={
             <SimpleMenu
-              overdue={overdueQuestions(questions).length}
-              handleDelete={this.handleDelete}
-              handleReviseNow={this.handleReviseNow}
+              overdue={overdue}
+              topic={topic}
+              questions={questions}
+              dispatch={dispatch}
             />
           }
           title={
@@ -85,6 +85,14 @@ class Topic extends Component {
             value={66}
             className={classes.progress}
           />
+          <Badge color='secondary' badgeContent={overdue}>
+            <Button
+              disabled={overdue === 0}
+              onClick={this.handleReviseNow}
+            >
+            Revise Now
+          </Button>
+          </Badge>
           <IconButton onClick={this.handleExpandClick}>
             <ExpandMoreRounded />
           </IconButton>

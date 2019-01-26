@@ -12,6 +12,8 @@ import {
   RECEIVE_EDIT_QUESTION,
   OPEN_QUESTION,
   CLOSE_QUESTION,
+  OPEN_QUIZ,
+  CLOSE_QUIZ,
 } from './actions';
 
 const handleFabSubmit = (event) => {
@@ -26,6 +28,7 @@ const initialStates = {
   },
   topics: {},
   questions: {},
+  quiz: {},
   handleFabSubmit: handleFabSubmit
 }
 
@@ -90,10 +93,22 @@ function questions(state=initialStates.questions, action) {
   }
 }
 
+function quiz(state=initialStates.quiz, action) {
+  switch (action.type) {
+    case OPEN_QUIZ:
+      return { open: true, questions: action.questions };
+    case CLOSE_QUIZ:
+      return { open: false };
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   fetchStatus,
   topics,
   questions,
+  quiz,
 });
 
 export default rootReducer;

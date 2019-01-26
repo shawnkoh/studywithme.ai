@@ -128,6 +128,20 @@ export function editQuestion(id, payload) {
   }
 }
 
+// -------------------- QUIZ --------------------
+
+export const OPEN_QUIZ = 'OPEN_QUIZ';
+
+export function openQuiz(questions) {
+  return { type: OPEN_QUIZ, questions };
+}
+
+export const CLOSE_QUIZ = 'CLOSE_QUIZ';
+
+export function closeQuiz() {
+  return { type: CLOSE_QUIZ };
+}
+
 /*
 state schema
 

@@ -4,6 +4,7 @@ import { Table, TableHead, TableRow, TableCell, TableSortLabel, TableBody, Circu
 import Question from './Question';
 import { createQuestion } from '../actions';
 import CustomEditor from './CustomEditor';
+import { getQuestionsByTopic } from '../queries';
 
 const mapStateToProps = (state) => ({
   isQuestionsFetching: state.fetchStatus.isTopicsFetching,
@@ -49,17 +50,12 @@ class Questions extends Component {
     return (
       body (
         <React.Fragment>
-          {Object.values(questions).map(question => {
-            if (topic_id === question.topic_id) {
-              return (
-                <Question
-                  question={question}
-                  key={question.id}
-                />
-              )
-            };
-            return null;
-          })}
+          {getQuestionsByTopic(topic_id, questions).map(question => (
+            <Question
+              question={question}
+              key={question.id}
+            />
+          ))}
 
           <TableRow>
             <TableCell colSpan={3}>
@@ -76,6 +72,7 @@ class Questions extends Component {
                   }
                 }
                 clearAfterSave
+                disableDefaultValue
               />
             </TableCell>
           </TableRow>

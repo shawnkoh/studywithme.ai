@@ -12,7 +12,7 @@ import { ExpandMoreRounded } from '@material-ui/icons';
 import SimpleMenu from './SimpleMenu';
 import CustomInput from './CustomInput';
 import Questions from './Questions';
-import { editTopic, deleteTopic } from '../actions';
+import { editTopic, deleteTopic, openQuiz } from '../actions';
 import { overdueQuestions } from '../queries';
 
 const styles = theme => ({
@@ -38,6 +38,11 @@ class Topic extends Component {
     dispatch(deleteTopic(topic.id));
   }
 
+  handleReviseNow = () => {
+    const { questions, dispatch } = this.props;
+    dispatch(openQuiz(questions));
+  }
+
   render() {
     const { topic, questions, classes, dispatch } = this.props;
     return (
@@ -48,6 +53,7 @@ class Topic extends Component {
             <SimpleMenu
               overdue={overdueQuestions(questions).length}
               handleDelete={this.handleDelete}
+              handleReviseNow={this.handleReviseNow}
             />
           }
           title={

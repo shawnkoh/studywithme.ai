@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 import Topics from '../components/Topics';
 import FloatingActionButton from '../components/FloatingActionButton';
+import Quiz from '../components/Quiz';
 
 const styles = theme => ({
   root: {
@@ -31,7 +32,9 @@ class App extends Component {
     dispatch(fetchQuestions());
   }
   render() {
-    const { classes } = this.props;
+    const { quiz, classes } = this.props;
+    const { open, questions } = quiz;
+
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -41,6 +44,7 @@ class App extends Component {
           <Topics />
           <FloatingActionButton />
         </main>
+        <Quiz open={open} questions={questions} />
       </div>
     )
   }
@@ -48,6 +52,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   topics: state.topics,
+  quiz: state.quiz,
 });
 
 export default connect(mapStateToProps)(withStyles(styles)(App));

@@ -25,6 +25,11 @@ class SimpleMenu extends React.Component {
     this.handleClose();
   };
 
+  handleReviseNow = () => {
+    this.props.handleReviseNow();
+    this.handleClose();
+  }
+
   render() {
     const { overdue } = this.props;
     const { anchorEl } = this.state;
@@ -49,7 +54,7 @@ class SimpleMenu extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleClose}>
+          <MenuItem onClick={this.handleReviseNow}>
             <ConditionalWrap
               condition={overdue}
               wrap={children=> <Badge color='secondary' badgeContent={overdue}>{children}</Badge>}

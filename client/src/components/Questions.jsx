@@ -15,7 +15,7 @@ const body = (children) => (
   <Table>
     <TableHead>
       <TableRow>
-        <TableCell width='60%'>
+        <TableCell>
           <TableSortLabel>Question</TableSortLabel>
         </TableCell>
         <TableCell>
@@ -23,6 +23,9 @@ const body = (children) => (
         </TableCell>    
         <TableCell>
           <TableSortLabel>Next Revision</TableSortLabel>
+        </TableCell>
+        <TableCell>
+          <TableSortLabel>Tags</TableSortLabel>
         </TableCell>
       </TableRow>
     </TableHead>
@@ -39,7 +42,7 @@ class Questions extends Component {
       return (
         body (
           <TableRow>
-            <TableCell colSpan={3}>
+            <TableCell colSpan={4}>
               <CircularProgress />
             </TableCell>
           </TableRow>
@@ -58,7 +61,7 @@ class Questions extends Component {
           ))}
 
           <TableRow>
-            <TableCell colSpan={3}>
+            <TableCell colSpan={4}>
               <CustomEditor
                 placeholder='New question'
                 handleSave={

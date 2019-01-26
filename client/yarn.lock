@@ -6414,6 +6414,14 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+material-ui-chip-input@^1.0.0-beta.13:
+  version "1.0.0-beta.13"
+  resolved "https://registry.yarnpkg.com/material-ui-chip-input/-/material-ui-chip-input-1.0.0-beta.13.tgz#85be89f5163343ddcf66cddf61ac51781b9dc2f2"
+  integrity sha512-qIPea5xWT424Umk0dKF8wnfDa3qZGW4/OV+Nw2E26ebfIv4qJjpDfRz3m9zhgZLWGEGYYwC/aiyMEeehs/RcKw==
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+
 material-ui-pickers@^2.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/material-ui-pickers/-/material-ui-pickers-2.1.2.tgz#8e4dfaed63bdd1bc537bd3b60f450130cf3db400"

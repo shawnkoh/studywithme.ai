@@ -7,6 +7,7 @@ class CreateQuestions < ActiveRecord::Migration[5.2]
       t.text :answer
       t.json :answerJSON
       t.text :difficulty
+      t.json :tags
       t.datetime :next_revision
 
       t.timestamps

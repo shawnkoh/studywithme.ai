@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TableRow, TableCell, Select, MenuItem, Input, Badge } from '@material-ui/core';
+import { TableRow, TableCell, Select, MenuItem, Input, Badge, Chip } from '@material-ui/core';
 import { DateTimePicker } from 'material-ui-pickers';
 import { editQuestion, openQuestion } from '../actions';
 import CustomEditor from './CustomEditor';
+import ChipInput from 'material-ui-chip-input'
 
 // TODO: Highlight the Next Revision fields instead of surrounding it with a badge, need to learn how to inject CSS using MaterialUI's themes
 
@@ -12,6 +13,9 @@ const mapStateToProps = (state) => ({
 });
 
 class Question extends Component {
+  handleTagsChange = (chips) => {
+  }
+
   render() {
     let { question, dispatch, openedQuestion } = this.props;
     return (
@@ -63,6 +67,14 @@ class Question extends Component {
               format={'MMM d h:mm aa'}
             />
           </Badge>
+        </TableCell>
+        <TableCell>
+          <ChipInput
+            defaultValue={JSON.parse(question.tags)}
+            onChange={
+              (chips) => dispatch( editQuestion(question.id, {tags: JSON.stringify(chips)}) )
+            }
+          />
         </TableCell>
       </TableRow>
     )

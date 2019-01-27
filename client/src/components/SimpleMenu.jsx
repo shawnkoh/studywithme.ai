@@ -54,9 +54,9 @@ class SimpleMenu extends React.Component {
             <ListItemIcon><BookRounded /></ListItemIcon>
             <ListItemText primary="Revise All" />
           </MenuItem>
-          <MenuItem onClick={this.handleClose}>
+          <MenuItem disabled onClick={this.handleClose}>
             <ListItemIcon><ArrowForwardRounded /></ListItemIcon>
-            <ListItemText primary="Move to topic" />
+            <ListItemText primary="Move to subject" />
           </MenuItem> 
           <MenuItem onClick={this.handleDelete}>
             <ListItemIcon>

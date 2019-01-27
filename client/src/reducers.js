@@ -4,18 +4,23 @@ import {
   RECEIVE_CREATE_TOPIC,
   REQUEST_TOPICS,
   RECEIVE_TOPICS,
-  RECEIVE_QUESTIONS,
-  REQUEST_QUESTIONS,
   RECEIVE_EDIT_TOPIC,
   RECEIVE_DELETE_TOPIC,
-  RECEIVE_CREATE_QUESTION,
-  RECEIVE_EDIT_QUESTION,
-  OPEN_QUESTION,
-  CLOSE_QUESTION,
   OPEN_QUIZ,
   CLOSE_QUIZ,
-  RECEIVE_DELETE_QUESTION,
+  OPEN_SUPPORT,
+  CLOSE_SUPPORT,
 } from './actions';
+
+import {
+  REQUEST_QUESTIONS,
+  RECEIVE_QUESTIONS,
+  RECEIVE_CREATE_QUESTION,
+  RECEIVE_EDIT_QUESTION,
+  RECEIVE_DELETE_QUESTION,
+  OPEN_QUESTION,
+  CLOSE_QUESTION,
+} from './actions/questions';
 
 const initialStates = {
   fetchStatus: {
@@ -42,6 +47,10 @@ function fetchStatus(state=initialStates.fetchStatus, action) {
       return Object.assign({}, state, { isTopicCreating: true });
     case RECEIVE_CREATE_TOPIC:
       return Object.assign({}, state, { isTopicCreating: false });
+    case OPEN_SUPPORT:
+      return Object.assign({}, state, { isSupportOpen: true });
+    case CLOSE_SUPPORT:
+      return Object.assign({}, state, { isSupportOpen: false });
     default:
       return state;
   }

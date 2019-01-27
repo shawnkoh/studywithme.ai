@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table, TableHead, TableRow, TableCell, TableSortLabel, TableBody, CircularProgress, Tooltip } from "@material-ui/core";
 import Question from './Question';
-import { createQuestion } from '../actions';
+import { createQuestion } from '../actions/questions';
 import CustomEditor from './CustomEditor';
 import { getQuestionsByTopic, sortQuestions } from '../queries';
 

@@ -19,6 +19,7 @@ import { CssBaseline, Badge, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { overdueQuestions } from '../queries';
 import Search from './Search';
+import { openSupport } from '../actions';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -59,7 +60,7 @@ class ResponsiveDrawer extends React.Component {
   };
 
   render() {
-    const { overdue, classes, theme } = this.props;
+    const { overdue, classes, theme, dispatch } = this.props;
     const drawer = (
       <div>
         <Toolbar>
@@ -70,7 +71,7 @@ class ResponsiveDrawer extends React.Component {
 
         <Divider />
 
-        <ListItem button>
+        <ListItem disabled button>
           <ListItemIcon>
             <FaceRounded />
           </ListItemIcon>
@@ -87,7 +88,7 @@ class ResponsiveDrawer extends React.Component {
             </Badge>
           </ListItem>
 
-          <ListItem button>
+          <ListItem disabled button>
             <ListItemIcon><StoreRounded /></ListItemIcon>
             <ListItemText primary="Archived" />
           </ListItem>
@@ -96,17 +97,17 @@ class ResponsiveDrawer extends React.Component {
         <Divider />
 
         <List component="nav">
-          <ListItem button>
+          <ListItem disabled button>
             <ListItemIcon><Settings /></ListItemIcon>
             <ListItemText primary="Settings" />
           </ListItem>
 
-          <ListItem button>
+          <ListItem button onClick={() => dispatch( openSupport() )}>
             <ListItemIcon><TagFacesRounded /></ListItemIcon>
-            <ListItemText primary="Contact support" />
+            <ListItemText primary="About me" />
           </ListItem>
 
-          <ListItem button>
+          <ListItem disabled button>
             <ListItemIcon><ArrowBackRounded /></ListItemIcon>
             <ListItemText primary="Log out" />
           </ListItem>
@@ -165,8 +166,6 @@ class ResponsiveDrawer extends React.Component {
 
 ResponsiveDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
-  // Injected by the documentation to work in an iframe.
-  // You won't need it on your project.
   container: PropTypes.object,
   theme: PropTypes.object.isRequired,
 };

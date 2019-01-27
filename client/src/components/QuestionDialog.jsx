@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dialog, DialogTitle, DialogContent, Paper, DialogContentText, DialogActions, Button, Grid } from '@material-ui/core';
-import { closeQuestion, editQuestion, deleteQuestion } from '../actions';
+import { closeQuestion, editQuestion, deleteQuestion } from '../actions/questions';
 import Plain from 'slate-plain-serializer';
 import RichTextEditor from './RichTextEditor';
 import { Value } from 'slate';

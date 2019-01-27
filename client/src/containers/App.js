@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  fetchTopics,
-  fetchQuestions,
-} from '../actions';
+import { fetchTopics } from '../actions';
+import { fetchQuestions } from '../actions/questions';
 import ResponsiveDrawer from '../components/ResponsiveDrawer';
 import {
   withStyles, CssBaseline,
@@ -12,6 +10,7 @@ import {
 import Topics from '../components/Topics';
 import FloatingActionButton from '../components/FloatingActionButton';
 import Quiz from '../components/Quiz';
+import { Support } from '../components/Support';
 
 const styles = theme => ({
   root: {
@@ -25,14 +24,13 @@ const styles = theme => ({
 });
 
 class App extends Component {
-
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchTopics());
     dispatch(fetchQuestions());
   }
   render() {
-    const { quiz, classes } = this.props;
+    const { quiz, classes, isSupportOpen, dispatch } = this.props;
     const { open, questions } = quiz;
 
     return (
@@ -45,6 +43,7 @@ class App extends Component {
           <FloatingActionButton />
         </main>
         <Quiz open={open} questions={questions} />
+        <Support open={isSupportOpen} dispatch={dispatch} />
       </div>
     )
   }
@@ -53,6 +52,7 @@ class App extends Component {
 const mapStateToProps = (state) => ({
   topics: state.topics,
   quiz: state.quiz,
+  isSupportOpen: state.fetchStatus.isSupportOpen,
 });
 
 export default connect(mapStateToProps)(withStyles(styles)(App));

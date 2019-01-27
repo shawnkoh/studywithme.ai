@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Dialog, Slide, Stepper, Step, StepLabel, Grid, Button, Paper, Typography, Hidden, } from '@material-ui/core';
+import { Dialog, Slide, Stepper, Step, StepLabel, Grid, Button, Paper, Typography, } from '@material-ui/core';
 import CustomEditor from './CustomEditor';
-import { closeQuiz, editQuestion } from '../actions'
+import { editQuestion } from '../actions/questions';
+import { closeQuiz } from '../actions';
 
 function Transition(props) {
   return <Slide direction='up' {...props} />;

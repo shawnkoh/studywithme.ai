@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TableRow, TableCell, Select, MenuItem, Input, Badge, } from '@material-ui/core';
 import { DateTimePicker } from 'material-ui-pickers';
-import { editQuestion, openQuestion } from '../actions';
+import { editQuestion, openQuestion } from '../actions/questions';
 import CustomEditor from './CustomEditor';
 import ChipInput from 'material-ui-chip-input'
 

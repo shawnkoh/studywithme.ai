@@ -15,10 +15,10 @@ import { withStyles } from '@material-ui/core/styles';
 import {
   ArrowBackRounded, TagFacesRounded, Settings, FaceRounded, ListRounded, StoreRounded,
 } from '@material-ui/icons';
-import { CssBaseline, TextField, Badge, Typography } from '@material-ui/core';
+import { CssBaseline, Badge, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { overdueQuestions } from '../queries';
-
+import Search from './Search';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -127,17 +127,7 @@ class ResponsiveDrawer extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <TextField
-              id="search"
-              style={{ margin: 8 }}
-              placeholder="Search all questions..."
-              fullWidth
-              margin="normal"
-              variant="outlined"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
+            <Search />
           </Toolbar>
         </AppBar>
         <nav className={classes.drawer}>

@@ -1,4 +1,3 @@
-// import 'react-dates/initialize';
 import 'babel-polyfill';
 import React from "react";
 import ReactDOM from "react-dom";

@@ -47,12 +47,13 @@ P3 – Nice to have
 
 | Feature | Priority |
 | --- | --- |
-| Allow users to create an account | P1 |
+| **Allow users to create an account** | P1 |
+| **Require users to verify email** | P1 |
 | ~~Create, Read, Update &amp; Delete Subject, Subject&#39;s Topics, Topic&#39;s Questions &amp; Question&#39;s Answer~~ | P1 |
 | Allow users to rearrange their Nav Bar | P1 |
 | Allow users to rearrange Questions in a Topic | P1 
 | ~~Begin quiz on a Subject / Topic~~ | P1 |
-| Provide an optional answer pad~~ | P1 |
+| ~~Provide an optional answer pad~~ | P1 |
 | ~~Format text e.g. bold, italics, code, tables, (un)ordered lists~~ | P1 |
 | ~~Rate how difficult a Question is, and test the user again in x hours based on his rating~~ | P1 |
 | Allow users to archive Subjects / Topics | P1 |

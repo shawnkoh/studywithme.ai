@@ -14,6 +14,7 @@ import {
   CLOSE_QUESTION,
   OPEN_QUIZ,
   CLOSE_QUIZ,
+  RECEIVE_DELETE_QUESTION,
 } from './actions';
 
 const initialStates = {
@@ -83,6 +84,9 @@ function questions(state=initialStates.questions, action) {
     case RECEIVE_EDIT_QUESTION:
       let question = action.response.data;
       return {...state, [question.id]: question};
+    case RECEIVE_DELETE_QUESTION:
+      let { [action.id]: deletedQuestion, ...others } = state;
+      return others;
     default:
       return state;
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dialog, DialogTitle, DialogContent, Paper, DialogContentText, DialogActions, Button, Grid } from '@material-ui/core';
-import { closeQuestion, editQuestion } from '../actions';
+import { closeQuestion, editQuestion, deleteQuestion } from '../actions';
 import Plain from 'slate-plain-serializer';
 import RichTextEditor from './RichTextEditor';
 import { Value } from 'slate';
@@ -48,6 +48,11 @@ class QuestionDialog extends Component {
   handleCancel = () => {
     this.props.dispatch(closeQuestion());
     this.setState({initialised: false});
+  }
+
+  handleDelete = () => {
+    const { question, dispatch } = this.props;
+    dispatch( deleteQuestion(question.id) );
   }
 
   render() {
@@ -116,18 +121,30 @@ class QuestionDialog extends Component {
         </DialogContent>
 
         <DialogActions>
-          <Button
-            color='primary'
-            onClick={this.handleCancel}
-          >
-            Cancel
-          </Button>
-          <Button
-            color='primary'
-            onClick={this.handleSave}
-          >
-            Save
-          </Button>
+          <Grid container direction='row' justify='space-between' alignItems='stretch'>
+            <Grid item>
+              <Button
+                color='secondary'
+                onClick={this.handleDelete}
+              >
+                Delete
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                color='primary'
+                onClick={this.handleCancel}
+              >
+                Cancel
+              </Button>
+              <Button
+                color='primary'
+                onClick={this.handleSave}
+              >
+                Save
+              </Button>
+            </Grid>
+          </Grid>
         </DialogActions>
       </Dialog>
     )

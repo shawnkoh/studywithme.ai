@@ -83,6 +83,8 @@ export function deleteTopic(id) {
   }
 }
 
+// -------------------- QUESTION --------------------
+
 export const REQUEST_QUESTIONS = 'REQUEST_QUESTIONS';
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 
@@ -125,6 +127,19 @@ export function editQuestion(id, payload) {
   return function (dispatch) {
     return axios.patch(`/api/questions/${id}`, payload)
       .then(response => dispatch(receiveEditQuestion(response)))
+  }
+}
+
+export const RECEIVE_DELETE_QUESTION = 'RECEIVE_DELETE_QUESTION';
+
+function receiveDeleteQuestion(id, response) {
+  return { type: RECEIVE_DELETE_QUESTION, id, response }
+}
+
+export function deleteQuestion(id) {
+  return function(dispatch) {
+    return axios.delete(`/api/questions/${id}`)
+      .then(response => dispatch(receiveDeleteQuestion(id, response)))
   }
 }
 

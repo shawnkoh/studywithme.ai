@@ -48,24 +48,24 @@ P3 – Nice to have
 | Feature | Priority |
 | --- | --- |
 | Allow users to create an account | P1 |
-~~| Create, Read, Update &amp; Delete Subject, Subject&#39;s Topics, Topic&#39;s Questions &amp; Question&#39;s Answer | P1 |~~
+| ~~Create, Read, Update &amp; Delete Subject, Subject&#39;s Topics, Topic&#39;s Questions &amp; Question&#39;s Answer~~ | P1 |
 | Allow users to rearrange their Nav Bar | P1 |
 | Allow users to rearrange Questions in a Topic | P1 
-~~| Begin quiz on a Subject / Topic | P1 |~~
-~~| Provide an optional answer pad | P1 |~~
-~~| Format text e.g. bold, italics, code, tables, (un)ordered lists | P1 |~~
-~~| Rate how difficult a Question is, and test the user again in x hours based on his rating | P1 |~~
+| ~~Begin quiz on a Subject / Topic~~ | P1 |
+| Provide an optional answer pad~~ | P1 |
+| ~~Format text e.g. bold, italics, code, tables, (un)ordered lists~~ | P1 |
+| ~~Rate how difficult a Question is, and test the user again in x hours based on his rating~~ | P1 |
 | Allow users to archive Subjects / Topics | P1 |
 | Auto-backup Database | P2 |
 | Add a Light Theme | P2 |
 | Adjust the time before retesting a question by Topic / Subject | P2 |
 | Inform user they have x questions that they need to revise daily via Push Notifications / Telegram / Email | P2 |
 | Create a Landing Page | P2 |
-~~| Mobile-ready | P2 |~~
+| ~~Mobile-ready~~ | P2 |
 | Tag topics to a color theme | P2 |
 | Undo / Redo | P2 |
 | Search for a Subject / Topic / Question | P2 |
-~~| Keyboard shortcuts | P2 |~~
+| ~~Keyboard shortcuts~~ | P2 |
 | Import decks from other apps like Anki / Excel | P3 |
 | Support handwriting | P3 |
 | Allow users to share their subjects with others on a Marketplace | P3 |
